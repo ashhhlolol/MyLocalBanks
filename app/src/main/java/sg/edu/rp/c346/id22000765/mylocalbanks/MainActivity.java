@@ -42,37 +42,54 @@ public class MainActivity extends AppCompatActivity {
         menu.add(0, 0, 0, "Website");
         menu.add(0, 1, 1, "Contact the bank");
 
-        if(v==tvDBS){
+        if (v == tvDBS) {
             wordClicked = "DBS";
-        }
-        else if(v==tvOCBC){
-            wordClicked="OCBC";
-        }
-        else{
-            wordClicked="UOB";
+        } else if (v == tvOCBC) {
+            wordClicked = "OCBC";
+        } else {
+            wordClicked = "UOB";
         }
 
     }
 
     public boolean onContextItemSelected(MenuItem item) {
-        if (item.getItemId() == 1) { // Check whether the selected menu item ID is 0
-            // Code for action
-            if (wordClicked.equalsIgnoreCase("dbs")) {
+        if (wordClicked.equalsIgnoreCase("dbs")) {
+            if (item.getItemId() == 1) {
                 Intent intentCall = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 1800111111"));
                 startActivity(intentCall);
                 return true;
-            } else if (wordClicked.equalsIgnoreCase("ocbc")) {
-                Intent intentCall = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 18003633333"));
-                startActivity(intentCall);
-                return true;
-            } else if (wordClicked.equalsIgnoreCase("uob")) {
-                Intent intentCall = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:18002222121"));
-                startActivity(intentCall);
+            } else if (item.getItemId() == 0) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dbs.com.sg"));
+                startActivity(intent);
                 return true;
             }
         }
 
-        return true;
+            if (wordClicked.equalsIgnoreCase("ocbc")) {
+                if (item.getItemId() == 1) {
+                    Intent intentCall = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 18003633333"));
+                    startActivity(intentCall);
+                    return true;
+                } else if (item.getItemId() == 0) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ocbc.com"));
+                    startActivity(intent);
+                    return true;
+                }
+            }
+            if (wordClicked.equalsIgnoreCase("uob")) {
+                if (item.getItemId() == 1) {
+                    Intent intentCall = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 18002222121"));
+                    startActivity(intentCall);
+                    return true;
+                } else if (item.getItemId() == 0) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.uob.com.sg"));
+                    startActivity(intent);
+                    return true;
+                }
+
+            }
+
+        return false;
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,9 +97,10 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //
+
         int id = item.getItemId();
 
         if (id == R.id.EnglishSelection) {
