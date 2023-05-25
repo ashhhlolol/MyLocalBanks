@@ -8,6 +8,8 @@
         android:id="@+id/ChineseSelection"
         android:orderInCategory="101"
         android:title="@string/chinese" />
-
+    <item
+        android:id="@+id/menu_toggle_favourite"
+        android:title="Toggle Favourite" />
 
 </menu>
